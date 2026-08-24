@@ -1,0 +1,253 @@
+:root {
+  --primary: #0f172a;
+  --accent: #2563eb;
+  --bg: #f8fafc;
+  --card-bg: #ffffff;
+  --text: #334155;
+  --danger: #dc2626;
+  --success: #16a34a;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: #f8fafc;
+  color: #334155;
+}
+
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 12px;
+  margin-bottom: 24px;
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.header p {
+  color: #64748b;
+  margin: 4px 0 0 0;
+  font-size: 0.9rem;
+}
+
+/* Toasts */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 12px 20px;
+  border-radius: 6px;
+  color: white;
+  font-weight: 600;
+  z-index: 9999;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.toast.success { background-color: #16a34a; }
+.toast.error { background-color: #dc2626; }
+
+/* Dashboard Stats */
+.dashboard {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 24px;
+}
+
+.dashboard h2 {
+  font-size: 1.1rem;
+  margin: 0 0 16px 0;
+  color: #0f172a;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px;
+}
+
+.stat-card {
+  background: #f8fafc;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-card .label {
+  font-size: 0.75rem;
+  color: #64748b;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.stat-card .value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #2563eb;
+  margin-top: 4px;
+}
+
+/* Layout */
+.main-content {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 850px) {
+  .main-content { grid-template-columns: 1fr; }
+}
+
+.card-section {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.card-section h2 {
+  font-size: 1.1rem;
+  margin-top: 0;
+  margin-bottom: 16px;
+  color: #0f172a;
+}
+
+/* Formulaire */
+.field {
+  margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  
+}
+.field input{
+    width: 100%;
+}
+
+label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+input, select {
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+.error {
+  color: #dc2626;
+  font-size: 0.75rem;
+  margin-top: 2px;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 10px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.btn-submit:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* Liste de cartes */
+.menages-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.menage-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 12px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-top h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #0f172a;
+}
+
+.badge {
+  background: #eff6ff;
+  color: #2563eb;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.card-details p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0;
+  font-size: 0.85rem;
+  color: #334155;
+}
+
+.card-details img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.btn-delete {
+  margin-top: 10px;
+  background: transparent;
+  color: #dc2626;
+  border: 1px solid #fca5a5;
+  padding: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.btn-delete:hover {
+  background: #dc2626;
+  color: white;
+}

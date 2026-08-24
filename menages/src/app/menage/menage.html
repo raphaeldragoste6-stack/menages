@@ -1,0 +1,134 @@
+<!-- Toast Notifications -->
+<div *ngIf="toast" class="toast" [ngClass]="toast.type">
+  {{ toast.message }}
+</div>
+
+<div class="app-container">
+  <!-- En-tête -->
+  <header class="header">
+    <h1>REPUBLIQUE DU CAMEROUN</h1>
+    <p>Système Centralisé de Recensement de la Population</p>
+  </header>
+
+  <!-- 3. Tableau de bord statistique (8 Indicateurs) -->
+  <section class="dashboard">
+    <h2>Tableau de Bord Statistique</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="label">Ménages Recensés</span>
+        <span class="value">{{ stats.totalMenages }}</span>
+      </div>
+      <div class="stat-card">
+        <span class="label">Population Totale</span>
+        <span class="value">{{ stats.populationTotale }}</span>
+      </div>
+      <div class="stat-card">
+        <span class="label">Moy. Pers / Ménage</span>
+        <span class="value">{{ stats.moyennePersonnes }}</span>
+      </div>
+      <div class="stat-card">
+        <span class="label">Âge Moyen Global</span>
+        <span class="value">{{ stats.ageMoyenGlobal }} ans</span>
+      </div>
+      <div class="stat-card">
+        <span class="label">Maisons</span>
+        <span class="value">{{ stats.totalMaisons }}</span>
+      </div>
+      <div class="stat-card">
+        <span class="label">Appartements</span>
+        <span class="value">{{ stats.totalAppartements }}</span>
+      </div>
+      <div class="stat-card">
+        <span class="label">Villas</span>
+        <span class="value">{{ stats.totalVillas }}</span>
+      </div>
+      <div class="stat-card">
+        <span class="label">Zones Couvertes</span>
+        <span class="value">{{ stats.totalZones }}</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="main-content">
+    <!-- 1. Formulaire de Recensement -->
+    <section class="card-section">
+      <h2>Nouveau Recensement</h2>
+      <form [formGroup]="menageForm" (ngSubmit)="onSubmit()">
+        <div class="field">
+          <label>Chef de Ménage</label>
+          <input type="text" formControlName="nomChefMenage" placeholder="Ex: Atangana Joseph" />
+          <small class="error" *ngIf="isFieldInvalid('nomChefMenage')">
+            Nom requis (minimum 3 caractères).
+          </small>
+        </div>
+
+        <div class="field">
+          <label>Zone / Quartier</label>
+          <input type="text" formControlName="zone" placeholder="Ex: Biyem-Assi" />
+          <small class="error" *ngIf="isFieldInvalid('zone')"> La zone est obligatoire. </small>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Nbre Personnes</label>
+            <input type="number" formControlName="nombrePersonnes" min="1" />
+            <small class="error" *ngIf="isFieldInvalid('nombrePersonnes')">
+              Au moins 1 personne.
+            </small>
+          </div>
+
+          <div class="field">
+            <label>Âge Moyen</label>
+            <input type="number" formControlName="ageMoyen" min="0" />
+            <small class="error" *ngIf="isFieldInvalid('ageMoyen')">
+              Saisissez un âge valide.
+            </small>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Type de Logement</label>
+          <select formControlName="typeLogement">
+            <option value="">-- Sélectionner --</option>
+            <option *ngFor="let t of typesLogement" [value]="t">{{ t }}</option>
+          </select>
+          <small class="error" *ngIf="isFieldInvalid('typeLogement')">
+            Veuillez sélectionner un type.
+          </small>
+        </div>
+
+       <button type="submit" class="btn-submit">
+            Enregistrer le Ménage
+       </button>
+      </form>
+    </section>
+
+    <!-- 2. Liste des Ménages -->
+    <section class="card-section">
+      <h2>Ménages Enregistrés ({{ menages.length }})</h2>
+      <div class="menages-list">
+        <div class="menage-card" *ngFor="let m of menages">
+          <div class="card-top">
+            <h3>{{ m.nomChefMenage }}</h3>
+            <span class="badge">{{ m.typeLogement }}</span>
+          </div>
+          <div class="card-details">
+            <p>
+              <img src="/images/locall.svg" alt="Zone" />
+              <strong>Zone :</strong> {{ m.zone }}
+            </p>
+            <p>
+              <img src="/images/personne.svg" alt="Habitants" />
+              <strong>Habitants :</strong> {{ m.nombrePersonnes }} personne(s)
+            </p>
+            <p>
+              <img src="/images/age.svg" alt="Âge" />
+              <strong>Âge moyen :</strong> {{ m.ageMoyen }} ans
+            </p>
+          </div>
+          <button class="btn-delete" (click)="onDelete(m.id!)">Supprimer</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
